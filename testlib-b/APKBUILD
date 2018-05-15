@@ -8,6 +8,7 @@ license="CC0-1.0"
 source="testlib.c testlib.h"
 options="!check"
 builddir="$srcdir/"
+provides="testlib-a"
 
 build() {
 	cd "$builddir"

@@ -1,0 +1,28 @@
+pkgname=testapp-a
+pkgver=1.0
+pkgrel=0
+pkgdesc="conflicts example: program using the dynamic library"
+url="https://postmarketos.org"
+arch="all"
+license="CC0-1.0"
+depends="testlib-a"
+source="testapp.c"
+builddir="$srcdir/"
+
+build() {
+	cd "$builddir"
+    $CC testapp.c -o testapp -L/usr/lib/ -ltestlib
+}
+
+check() {
+	cd "$builddir"
+    printf 'hello, world from testlib!\n' > expected
+    ./testapp > real
+    diff -q expected real
+}
+
+package() {
+	cd "$builddir"
+    install -Dm755 "$srcdir/testapp" "$pkgdir/usr/bin/testapp"
+}
+sha512sums="73b167575dc0082a1277b0430f095509885c7aaf55e59bad148825a9879f91fe41c6479bb7f34c0cdd15284b0aadd904a5ba2c1ea85fb8bfb061e1cbf4322d76  testapp.c"

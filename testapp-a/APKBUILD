@@ -5,7 +5,7 @@ pkgdesc="conflicts example: program using the dynamic library"
 url="https://postmarketos.org"
 arch="all"
 license="CC0-1.0"
-depends="testlib-a"
+makedepends="testlib-a"
 source="testapp.c"
 builddir="$srcdir/"
 
